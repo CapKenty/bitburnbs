@@ -1,0 +1,13 @@
+/** @param {NS} ns **/
+export async function main(ns) {
+    var ram = 128;
+var i = 0;
+while (i < ns.getPurchasedServerLimit()) {
+	if (ns.getServerMoneyAvailable("home") > ns.getPurchasedServerCost(ram)) {
+		var hostname = ns.purchaseServer("p128serv" + i, ram);
+		await ns.sleep(100)
+		await ns.scp("silver.ns", hostname);
+		ns.exec("silver.ns", hostname, 45);
+	}
+}
+}

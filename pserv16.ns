@@ -1,0 +1,12 @@
+/** @param {NS} ns **/
+export async function main(ns) {
+    var ram = 16;
+var i = 0;
+while (i < ns.getPurchasedServerLimit()) {
+	if (ns.getServerMoneyAvailable("home") > ns.getPurchasedServerCost(ram)) {
+		var hostname = ns.purchaseServer("p16serv" + i, ram);
+		await ns.scp("hara.script", hostname);
+		ns.exec("hara.script", hostname, 6);
+	}
+}
+}
